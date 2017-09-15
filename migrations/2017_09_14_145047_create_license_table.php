@@ -17,7 +17,7 @@ class CreateLicenseTable extends Migration
             $table->increments('id');
             $table->string('owner_type');
             $table->integer('owner_id');
-            $table->string('maintainer');
+            $table->string('license');
             $table->integer('quantity')->default(0);
             $table->timestamps();
         });

@@ -28,7 +28,7 @@ abstract class License
         $this->model = LicenseModel::firstOrCreate([
             "owner_type" => get_class($owner),
             "owner_id" => $owner->id,
-            "maintainer" => get_class($this),
+            "license" => get_class($this),
         ], [
             "quantity" => 0,
         ]);
