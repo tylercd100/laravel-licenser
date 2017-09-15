@@ -60,7 +60,7 @@ abstract class License
      */
     public function remaining()
     {
-        return $this->maximum() - $this->used();
+        return max($this->maximum() - $this->used(), 0);
     }
 
     /**
