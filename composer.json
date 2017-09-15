@@ -33,5 +33,12 @@
         "orchestra/testbench": "^3.2"
     },
     "suggest": {
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tylercd100\\License\\Providers\\LicenseServiceProvider"
+            ]
+        }
     }
 }
