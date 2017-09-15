@@ -28,7 +28,7 @@ abstract class License
         if (!in_array( HasLicenses::class, class_uses($owner))) {
             throw new LicenseException("The owner must use the trait: ".HasLicenses::class);
         }
-        
+
         $this->owner = $owner;
         $this->model = LicenseModel::firstOrCreate([
             "owner_type" => get_class($owner),
@@ -42,7 +42,7 @@ abstract class License
     /**
      * Throws exception if there are not enough licenses available
      *
-     * @param [type] $quantity
+     * @param int $quantity
      * @return void
      */
     public function check($quantity)

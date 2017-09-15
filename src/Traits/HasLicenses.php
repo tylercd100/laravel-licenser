@@ -9,14 +9,14 @@ trait HasLicenses
     public function checkLicensesAvailable($class, $quantity)
     {
         $maintainer = $this->getLicenseInstance($class);        
-        $maintainer->check($this, $quantity);
+        $maintainer->check($quantity);
         return $this;
     }
 
     public function getLicensesRemaining($class)
     {
         $maintainer = $this->getLicenseInstance($class);        
-        return $maintainer->remaining($this);
+        return $maintainer->remaining();
     }
 
     public function addLicenses($class, $quantity = 1)
