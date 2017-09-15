@@ -48,7 +48,7 @@ abstract class License
     public function check($quantity)
     {
         $remaining = $this->remaining();
-        if ($remaining > $quantity) {
+        if ($remaining < $quantity) {
             throw new LicenseException($this->message($remaining, $quantity));
         }
     }
