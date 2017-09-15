@@ -23,6 +23,12 @@ class LicenseServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__.'/../../migrations');
+        if (method_exists($this, 'loadMigrationsFrom')) {
+            $this->loadMigrationsFrom(__DIR__.'/../../migrations');
+        } else {
+            $this->publishes([
+                __DIR__.'/../../migrations/' => database_path('migrations')
+            ], 'migrations');
+        }
     }
 }
