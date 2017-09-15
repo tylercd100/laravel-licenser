@@ -15,12 +15,12 @@
     ],
     "autoload":{
         "psr-4":{
-            "Tylercd100\\Licenser\\":"src/"
+            "Tylercd100\\License\\":"src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tylercd100\\Licenser\\Tests\\": "tests/"
+            "Tylercd100\\License\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "stable",

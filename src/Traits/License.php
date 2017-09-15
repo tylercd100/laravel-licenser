@@ -1,6 +1,6 @@
 <?php
 
-namespace Tylercd100\Licenser\Traits;
+namespace Tylercd100\License\Traits;
 
 trait License
 {

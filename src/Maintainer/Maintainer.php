@@ -1,9 +1,9 @@
 <?php
 
-namespace Tylercd100\Licenser\Maintainer;
+namespace Tylercd100\License\Maintainer;
 
-use Tylercd100\Licenser\Traits\HasLicenses;
-use Tylercd100\Licenser\Models\License;
+use Tylercd100\License\Traits\HasLicenses;
+use Tylercd100\License\Models\License;
 
 abstract class Maintainer
 {
@@ -70,7 +70,7 @@ abstract class Maintainer
     final public function add($quantity)
     {
         if (!is_int($quantity) || $quantity < 0) {
-            throw new LicenserExeception("Quantity must be a positive integer.");
+            throw new LicenseExeception("Quantity must be a positive integer.");
         }
 
         $this->adding($quantity);

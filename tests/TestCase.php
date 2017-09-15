@@ -1,6 +1,6 @@
 <?php
 
-namespace Tylercd100\Licenser\Tests;
+namespace Tylercd100\License\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
 

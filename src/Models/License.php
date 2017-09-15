@@ -1,8 +1,8 @@
 <?php
 
-namespace Tylercd100\Licenser\Models;
+namespace Tylercd100\License\Models;
 
-use Tylercd100\Licenser\Interfaces\License as ILicense;
+use Tylercd100\License\Interfaces\License as ILicense;
 
 class License extends Model implements ILicense
 {

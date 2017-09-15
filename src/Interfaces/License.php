@@ -1,6 +1,6 @@
 <?php
 
-namespace Tylercd100\Licenser\Interfaces;
+namespace Tylercd100\License\Interfaces;
 
 interface License
 {

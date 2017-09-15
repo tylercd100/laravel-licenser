@@ -1,5 +1,5 @@
 <?php
 
 return [
-    "model" => \Tylercd100\Licenser\Models\License::class,
+    "model" => \Tylercd100\License\Models\License::class,
 ];

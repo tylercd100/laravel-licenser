@@ -1,8 +1,8 @@
 <?php
 
-namespace Tylercd100\Licenser\Traits;
+namespace Tylercd100\License\Traits;
 
-use Tylercd100\Licenser\Maintainer\Maintainer;
+use Tylercd100\License\Maintainer\Maintainer;
 
 trait HasLicenses
 {
@@ -44,7 +44,7 @@ trait HasLicenses
     {
         $maintainer = new $class($this);
         if (!($maintainer instanceof Maintainer)) {
-            throw LicenserException("Expected ".get_class($maintainer)." to be an instanceof ".Maintainer::class);
+            throw LicenseException("Expected ".get_class($maintainer)." to be an instanceof ".Maintainer::class);
         }
         return $maintainer;
     }

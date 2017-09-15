@@ -1,8 +1,8 @@
 <?php
 
-namespace Tylercd100\Licenser\Tests;
+namespace Tylercd100\License\Tests;
 
-class LicenserTest extends TestCase
+class LicenseTest extends TestCase
 {
 
 }
