@@ -22,8 +22,6 @@ abstract class Maintainer
     /**
      * Should return the difference between the maximum amount licenses and what you are trying to limit
      *
-     * You should return the difference between w
-     * 
      * @param int $total The total licenses
      * @return int
      */
