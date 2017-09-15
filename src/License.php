@@ -24,7 +24,7 @@ abstract class License
     protected $model;
 
     /**
-     * The default starting amount of licenses
+     * The default starting amount for the license
      *
      * @var int
      */
