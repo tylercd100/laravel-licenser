@@ -2,16 +2,17 @@
 
 namespace Tylercd100\License;
 
-use Tylercd100\License\Traits\HasLicenses;
-use Tylercd100\License\Models\License as LicenseModel;
+use Illuminate\Database\Eloquent\Model;
 use Tylercd100\License\Exceptions\LicenseException;
+use Tylercd100\License\Models\License as LicenseModel;
+use Tylercd100\License\Traits\HasLicenses;
 
 abstract class License
 {
     /**
      * Owner of the licenses
      *
-     * @var HasLicenses
+     * @var Model
      */
     protected $owner;
 
@@ -22,8 +23,12 @@ abstract class License
      */
     protected $model;
     
-    function __construct(HasLicenses $owner)
+    function __construct(Model $owner)
     {
+        if (!in_array( HasLicenses::class, class_uses($owner))) {
+            throw new LicenseException("The owner must use the trait: ".HasLicenses::class);
+        }
+        
         $this->owner = $owner;
         $this->model = LicenseModel::firstOrCreate([
             "owner_type" => get_class($owner),
