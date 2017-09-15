@@ -22,7 +22,14 @@ abstract class License
      * @var LicenseModel
      */
     protected $model;
-    
+
+    /**
+     * The default starting amount of licenses
+     *
+     * @var int
+     */
+    protected $default = 0;
+
     function __construct(Model $owner)
     {
         if (!in_array( HasLicenses::class, class_uses($owner))) {
@@ -35,7 +42,7 @@ abstract class License
             "owner_id" => $owner->id,
             "license" => get_class($this),
         ], [
-            "quantity" => 0,
+            "quantity" => $this->default,
         ]);
     }
 
