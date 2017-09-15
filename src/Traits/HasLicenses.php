@@ -19,6 +19,12 @@ trait HasLicenses
         return $license->remaining();
     }
 
+    public function getLicensesUsed($class)
+    {
+        $license = $this->getLicenseInstance($class);        
+        return $license->used();
+    }
+
     public function addLicenses($class, $quantity = 1)
     {
         // Add quantity of licenses
