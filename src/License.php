@@ -1,16 +1,31 @@
 <?php
 
-namespace Tylercd100\License\Maintainer;
+namespace Tylercd100\License;
 
 use Tylercd100\License\Traits\HasLicenses;
-use Tylercd100\License\Models\License;
+use Tylercd100\License\Models\License as LicenseModel;
+use Tylercd100\License\Exceptions\LicenseException;
 
-abstract class Maintainer
+abstract class License
 {
+    /**
+     * Owner of the licenses
+     *
+     * @var HasLicenses
+     */
+    protected $owner;
+
+    /**
+     * The database model for tracking licenses
+     *
+     * @var LicenseModel
+     */
+    protected $model;
+    
     function __construct(HasLicenses $owner)
     {
         $this->owner = $owner;
-        $this->model = License::firstOrCreate([
+        $this->model = LicenseModel::firstOrCreate([
             "owner_type" => get_class($owner),
             "owner_id" => $owner->id,
             "maintainer" => get_class($this),
@@ -20,12 +35,57 @@ abstract class Maintainer
     }
 
     /**
-     * Should return the difference between the maximum amount licenses and what you are trying to limit
+     * Throws exception if there are not enough licenses available
      *
-     * @param int $total The total licenses
+     * @param [type] $quantity
+     * @return void
+     */
+    public function check($quantity)
+    {
+        $remaining = $this->remaining();
+        if ($remaining > $quantity) {
+            throw new LicenseException($this->message($remaining, $quantity));
+        }
+    }
+
+    /**
+     * Returns the difference between the maximum amount licenses and what you are trying to limit
+     *
      * @return int
      */
-    abstract public function remaining($total);
+    public function remaining()
+    {
+        return $this->maximum() - $this->used();
+    }
+
+    /**
+     * Returns the maximum amount of licenses
+     *
+     * @return int
+     */
+    public function maximum()
+    {
+        return $this->model->quantity;
+    }
+
+    /**
+     * Returns the human readable error string when there are not enough licenses available.
+     *
+     * @param int $remaining Number of licenses available.
+     * @param int $quantity Number of licenses trying to allocate.
+     * @return string
+     */
+    protected function message($remaining, $quantity)
+    {
+        return "There are not enough licenses available. Tried to allocate {$quantity} but there are only {$remaining} available.";
+    }
+
+    /**
+     * Returns the current amount of licenses in use
+     *
+     * @return int
+     */
+    abstract public function used();
 
     /**
      * Called before adding to the license count.

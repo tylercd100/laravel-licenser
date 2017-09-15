@@ -6,6 +6,19 @@ use Tylercd100\License\Maintainer\Maintainer;
 
 trait HasLicenses
 {
+    public function checkLicensesAvailable($class, $quantity)
+    {
+        $maintainer = $this->getMaintainerInstance($class);        
+        $maintainer->check($this, $quantity);
+        return $this;
+    }
+
+    public function getLicensesRemaining($class)
+    {
+        $maintainer = $this->getMaintainerInstance($class);        
+        return $maintainer->remaining($this);
+    }
+
     public function addLicenses($class, $quantity = 1)
     {
         // Add quantity of licenses
@@ -32,12 +45,6 @@ trait HasLicenses
         // Remove all licenses of type
         $maintainer = $this->getMaintainerInstance($class);
         return $maintainer->remove();
-    }
-
-    public function hasLicensesAvailable($class)
-    {
-        $maintainer = $this->getMaintainerInstance($class);        
-        return $maintainer->available($this);
     }
 
     private function getMaintainerInstance($class)
