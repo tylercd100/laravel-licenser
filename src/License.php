@@ -32,7 +32,7 @@ abstract class License
 
     function __construct(Model $owner)
     {
-        if (!in_array( HasLicenses::class, class_uses($owner))) {
+        if (!in_array(HasLicenses::class, class_uses($owner))) {
             throw new LicenseException("The owner must use the trait: ".HasLicenses::class);
         }
 

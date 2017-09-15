@@ -2,6 +2,7 @@
 
 namespace Tylercd100\License\Tests;
 
+use Tylercd100\License\Providers\LicenseServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -24,7 +25,7 @@ class TestCase extends Orchestra
      */
     protected function getPackageProviders($app)
     {
-        return [];
+        return [LicenseServiceProvider::class];
     }
 
     /**
