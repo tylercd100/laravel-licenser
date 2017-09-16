@@ -139,7 +139,7 @@ abstract class License
      */
     final public function add($quantity = 1)
     {
-        if (!is_int($quantity) || $quantity <= 0) {
+        if (!is_int($quantity) || $quantity < 0) {
             throw new LicenseException("Quantity must be a positive integer.");
         }
 
@@ -161,7 +161,7 @@ abstract class License
      */
     final public function sub($quantity = 1)
     {
-        if (!is_int($quantity) || $quantity <= 0) {
+        if (!is_int($quantity) || $quantity < 0) {
             throw new LicenseException("Quantity must be a positive integer.");
         }
 
@@ -187,7 +187,7 @@ abstract class License
      */
     final public function set($quantity)
     {
-        if (!is_int($quantity) || $quantity <= 0) {
+        if (!is_int($quantity) || $quantity < 0) {
             throw new LicenseException("Quantity must be a positive integer.");
         }
 
