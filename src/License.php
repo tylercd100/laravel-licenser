@@ -50,13 +50,18 @@ abstract class License
      * Throws exception if there are not enough licenses available
      *
      * @param int $quantity
+     * @param boolean $add
      * @return void
      */
-    public function check($quantity)
+    public function check($quantity, $add = false)
     {
         $remaining = $this->remaining();
         if ($remaining < $quantity) {
-            throw new LicenseException($this->message($remaining, $quantity));
+            if(!$add) {
+                throw new LicenseException($this->message($remaining, $quantity));
+            } else {
+                $this->add($quantity - $remaining);
+            }
         }
     }
 

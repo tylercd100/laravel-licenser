@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-licenser` will be documented in this file.
 
+### 1.1.0
+- Can now automatically add licenses when checking if there are any available
+
 ### 1.0.2
 - Fixed adding or subtracting licenses by 0
 

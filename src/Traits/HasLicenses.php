@@ -6,10 +6,10 @@ use Tylercd100\License\License;
 
 trait HasLicenses
 {
-    public function checkLicensesAvailable($class, $quantity)
+    public function checkLicensesAvailable($class, $quantity, $add = false)
     {
         $license = $this->getLicenseInstance($class);        
-        $license->check($quantity);
+        $license->check($quantity, $add);
         return $this;
     }
 
