@@ -137,9 +137,9 @@ abstract class License
      * @param int $quantity
      * @return boolean
      */
-    final public function add($quantity)
+    final public function add($quantity = 1)
     {
-        if (!is_int($quantity) || $quantity < 0) {
+        if (!is_int($quantity) || $quantity <= 0) {
             throw new LicenseExeception("Quantity must be a positive integer.");
         }
 
@@ -159,9 +159,9 @@ abstract class License
      * @param int $quantity
      * @return boolean
      */
-    final public function sub($quantity)
+    final public function sub($quantity = 1)
     {
-        if (!is_int($quantity) || $quantity < 0) {
+        if (!is_int($quantity) || $quantity <= 0) {
             throw new LicenseExeception("Quantity must be a positive integer.");
         }
 
@@ -177,5 +177,26 @@ abstract class License
         $this->subtracted($quantity);
         
         return true;
+    }
+
+    /**
+     * Set the amount of licenses
+     *
+     * @param int $quantity
+     * @return boolean
+     */
+    final public function set($quantity)
+    {
+        if (!is_int($quantity) || $quantity <= 0) {
+            throw new LicenseExeception("Quantity must be a positive integer.");
+        }
+
+        $difference = $quantity - $this->maximum();
+
+        if ($difference < 0) {
+            return $this->sub(abs($difference));
+        } else {
+            return $this->add($difference);
+        }
     }
 }
