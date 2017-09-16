@@ -140,7 +140,7 @@ abstract class License
     final public function add($quantity = 1)
     {
         if (!is_int($quantity) || $quantity <= 0) {
-            throw new LicenseExeception("Quantity must be a positive integer.");
+            throw new LicenseException("Quantity must be a positive integer.");
         }
 
         $this->adding($quantity);
@@ -162,11 +162,11 @@ abstract class License
     final public function sub($quantity = 1)
     {
         if (!is_int($quantity) || $quantity <= 0) {
-            throw new LicenseExeception("Quantity must be a positive integer.");
+            throw new LicenseException("Quantity must be a positive integer.");
         }
 
         if ($this->model->quantity - $quantity < 0) {
-            throw new LicenseExeception("You cannot remove more licenses than you have available.");
+            throw new LicenseException("You cannot remove more licenses than you have available.");
         }
 
         $this->subtracting($quantity);
@@ -188,7 +188,7 @@ abstract class License
     final public function set($quantity)
     {
         if (!is_int($quantity) || $quantity <= 0) {
-            throw new LicenseExeception("Quantity must be a positive integer.");
+            throw new LicenseException("Quantity must be a positive integer.");
         }
 
         $difference = $quantity - $this->maximum();
