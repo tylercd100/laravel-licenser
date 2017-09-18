@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-licenser` will be documented in this file.
 
+### 2.0.1
+- Fixed abstract function definitions
+
 ### 2.0.0
 - Changed 'HasLicenses' Api
 

@@ -107,34 +107,34 @@ abstract class License
     /**
      * Called before adding to the license count.
      * 
-     * Should return true to proceed or false to cancel operation
-     * 
-     * @return boolean
+     * @param int $quantity
+     * @return void
      */
-    abstract protected function adding();
+    abstract protected function adding($quantity);
 
     /**
      * Called after adding to the license count
      *
+     * @param int $quantity
      * @return void
      */
-    abstract protected function added();
+    abstract protected function added($quantity);
 
     /**
      * Called before subtracting the license count
      *
+     * @param int $quantity
      * @return void
      */
-    abstract protected function subtracting();
+    abstract protected function subtracting($quantity);
 
     /**
      * Called after subtracting the license count
      * 
-     * Should return true to proceed or false to cancel operation
-     *
+     * @param int $quantity
      * @return void
      */
-    abstract protected function subtracted();
+    abstract protected function subtracted($quantity);
 
     /**
      * Add more licenses
