@@ -17,7 +17,7 @@ trait HasLicenses
     public function licensesAllocate($class, $quantity, $add = false)
     {
         $license = $this->getLicenseInstance($class);        
-        $license->check($quantity, $add);
+        $license->allocate($quantity, $add);
         return $this;
     }
 

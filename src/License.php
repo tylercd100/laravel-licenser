@@ -53,16 +53,28 @@ abstract class License
      * @param boolean $add
      * @return void
      */
-    public function check($quantity, $add = false)
+    final public function allocate($quantity, $add = false)
     {
         $remaining = $this->remaining();
         if ($remaining < $quantity) {
             if(!$add) {
-                throw new LicenseException($this->message($remaining, $quantity));
+                $this->error($remaining, $quantity);
             } else {
                 $this->add($quantity - $remaining);
             }
         }
+    }
+    
+    /**
+     * Called when there are not enough licenses available
+     *
+     * @param [type] $remaining
+     * @param [type] $quantity
+     * @return void
+     */
+    protected function error($remaining, $quantity)
+    {
+        throw new LicenseException($this->message($remaining, $quantity));
     }
 
     /**
@@ -103,7 +115,7 @@ abstract class License
      * @return string
      */
     abstract public function name();
-    
+
     /**
      * Returns the current amount of licenses in use
      *
