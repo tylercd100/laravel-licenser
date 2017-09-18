@@ -5,7 +5,7 @@ namespace Tylercd100\License;
 use Illuminate\Database\Eloquent\Model;
 use Tylercd100\License\Exceptions\LicenseException;
 use Tylercd100\License\Models\License as LicenseModel;
-use Tylercd100\License\Traits\HasLicenses;
+use Tylercd100\License\HasLicenses;
 
 abstract class License
 {

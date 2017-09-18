@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-licenser` will be documented in this file.
 
+### 2.0.0
+- Changed 'HasLicenses' Api
+
 ### 1.1.0
 - Can now automatically add licenses when checking if there are any available
 
