@@ -63,13 +63,26 @@ abstract class License
                 $this->add($quantity - $remaining);
             }
         }
+
+        $this->success($remaining, $quantity);
     }
     
     /**
+     * Called when there are enough licenses available
+     *
+     * @param int $quantity
+     * @return void
+     */
+    protected function success($quantity)
+    {
+        
+    }
+
+    /**
      * Called when there are not enough licenses available
      *
-     * @param [type] $remaining
-     * @param [type] $quantity
+     * @param int $remaining
+     * @param int $quantity
      * @return void
      */
     protected function error($remaining, $quantity)
