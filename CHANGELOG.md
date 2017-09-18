@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-licenser` will be documented in this file.
 
+### 3.2.1
+- Fixed creating default entries in the database
+
 ### 3.2.0
 - Added an 'success' function to License
 

@@ -36,14 +36,26 @@ abstract class License
             throw new LicenseException("The owner must use the trait: ".HasLicenses::class);
         }
 
+        $this->model = $this->getModel($owner);
         $this->owner = $owner;
-        $this->model = LicenseModel::firstOrCreate([
+    }
+
+    protected function getModel(Model $owner)
+    {
+        $opts = [
             "owner_type" => get_class($owner),
             "owner_id" => $owner->id,
             "license" => get_class($this),
-        ], [
-            "quantity" => $this->default,
-        ]);
+        ];
+
+        $x = LicenseModel::where($opts)->first();
+        
+        if (!$x) {
+            $opts["quantity"] = $this->default;
+            $x = LicenseModel::create($opts);
+        }
+
+        return $x;
     }
 
     /**
