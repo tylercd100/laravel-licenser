@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-licenser` will be documented in this file.
 
+### 3.0.0
+- Added abstract name function
+
 ### 2.0.1
 - Fixed abstract function definitions
 

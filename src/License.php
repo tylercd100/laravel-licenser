@@ -98,6 +98,13 @@ abstract class License
     }
 
     /**
+     * Returns human readable string for this license
+     *
+     * @return string
+     */
+    abstract public function name();
+    
+    /**
      * Returns the current amount of licenses in use
      *
      * @return int
