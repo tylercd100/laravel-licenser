@@ -76,7 +76,7 @@ abstract class License
             }
         }
 
-        $this->success($remaining, $quantity);
+        $this->success($quantity);
     }
     
     /**
