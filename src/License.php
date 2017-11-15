@@ -58,6 +58,11 @@ abstract class License
         return $x;
     }
 
+    public function __toString()
+    {
+        return $this->name();
+    }
+
     /**
      * Returns the owner of the license
      *

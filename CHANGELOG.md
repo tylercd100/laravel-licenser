@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-licenser` will be documented in this file.
 
+### 3.4.0
+- Added __toString() method
+
 ### 3.3.0
 - Added a getter for the owner of the license
 
