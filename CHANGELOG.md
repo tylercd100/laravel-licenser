@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-licenser` will be documented in this file.
 
+### 3.3.0
+- Added a getter for the owner of the license
+
 ### 3.2.2
 - Fixed passing the correct parameters for the success function
 

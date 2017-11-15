@@ -59,6 +59,16 @@ abstract class License
     }
 
     /**
+     * Returns the owner of the license
+     *
+     * @return Model
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
      * Throws exception if there are not enough licenses available
      *
      * @param int $quantity
