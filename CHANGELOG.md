@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-licenser` will be documented in this file.
 
+### 3.5.1
+- Now publishes the config file
+
 ### 3.5.0
 - Added `license:update` Command
 

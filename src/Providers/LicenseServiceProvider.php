@@ -14,7 +14,7 @@ class LicenseServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        $this->mergeConfigFrom(__DIR__.'/../config/pipe.php', 'pipe');
     }
 
     /**
@@ -24,6 +24,12 @@ class LicenseServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Config
+        $this->publishes([
+            __DIR__.'/../config/licenses.php' => base_path('config/licenses.php'),
+        ]);
+
+        // Migrations
         if (method_exists($this, 'loadMigrationsFrom')) {
             $this->loadMigrationsFrom(__DIR__.'/../../migrations');
         } else {
@@ -32,6 +38,7 @@ class LicenseServiceProvider extends ServiceProvider
             ], 'migrations');
         }
 
+        // Commands
         if ($this->app->runningInConsole()) {
             $this->commands([
                 config('licenses.command_update'), // LicenseUpdate
