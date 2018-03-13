@@ -40,12 +40,12 @@ class LicenseUpdate extends Command
         // Perform the update
         $license->set($this->getQuantity($license->maximum()));
 
-        $this->success("Done!");
+        $this->info("Done!");
     }
 
     protected function getQuantity($current = 0)
     {
-        return intval($this->ask("Please select a new maximum value for this license. The current maximum is {$current}."));
+        return intval($this->ask("Please select a new maximum value for this license. (The current maximum is {$current})"));
     }
 
     protected function selectLicense($where = [])
@@ -75,6 +75,8 @@ class LicenseUpdate extends Command
         } catch (\OutOfBoundsException $e) {
             throw new \Exception("Could not find a {$column}", 1, $e);
         }
+
+        $this->info("Selected: {$selection}");
 
         return $selection;
     }

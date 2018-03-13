@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-licenser` will be documented in this file.
 
+### 3.5.6
+- Fixed console output errors
+
 ### 3.5.5
 - Fixed type error for the `choice` function
 
