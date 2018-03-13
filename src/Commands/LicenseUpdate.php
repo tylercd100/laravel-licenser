@@ -66,7 +66,7 @@ class LicenseUpdate extends Command
     final protected function getSelection($column, $where = [])
     {
         try {
-            $options = DB::table('licenses')->where($where)->groupBy($column)->get([$column])->pluck($column);
+            $options = DB::table('licenses')->where($where)->groupBy($column)->get([$column])->pluck($column)->toArray();
             if(count($options) > 1) {
                 $selection = $this->choice("Select a {$column}", $options);
             } else {
