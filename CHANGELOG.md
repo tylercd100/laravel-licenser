@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-licenser` will be documented in this file.
 
+### 3.5.4
+- One day I'll get the file paths correct everytime all the time.
+
 ### 3.5.3
 - Fixed config file path in provider (again)
 

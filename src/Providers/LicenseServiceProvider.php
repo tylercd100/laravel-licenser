@@ -26,7 +26,7 @@ class LicenseServiceProvider extends ServiceProvider
     {
         // Config
         $this->publishes([
-            __DIR__.'/../config/licenses.php' => base_path('config/licenses.php'),
+            __DIR__.'/../../config/licenses.php' => base_path('config/licenses.php'),
         ]);
 
         // Migrations
