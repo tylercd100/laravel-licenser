@@ -2,6 +2,7 @@
 
 namespace Tylercd100\License\Providers;
 
+use Tylercd100\License\Commands\LicenseUpdate;
 use Illuminate\Support\ServiceProvider;
 
 class LicenseServiceProvider extends ServiceProvider
@@ -29,6 +30,12 @@ class LicenseServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../../migrations/' => database_path('migrations')
             ], 'migrations');
+        }
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                config('licenses.command_update'), // LicenseUpdate
+            ]);
         }
     }
 }
