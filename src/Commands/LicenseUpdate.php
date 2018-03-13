@@ -12,7 +12,7 @@ class LicenseUpdate extends Command
      *
      * @var string
      */
-    protected $signature = 'license:update';
+    protected $signature = 'license:update {--quantity=?} {--license=?} {--owner_type=?} {--owner_id=?}';
 
     /**
      * The console command description.
@@ -45,7 +45,7 @@ class LicenseUpdate extends Command
 
     protected function getQuantity($current = 0)
     {
-        return intval($this->ask("Please select a new maximum value for this license. (The current maximum is {$current})"));
+        return intval($this->option("quantity") ?: $this->ask("Please select a new maximum value for this license. (The current maximum is {$current})"));
     }
 
     protected function selectLicense($where = [])
@@ -65,15 +65,19 @@ class LicenseUpdate extends Command
 
     final protected function getSelection($column, $where = [])
     {
-        try {
-            $options = DB::table('licenses')->where($where)->groupBy($column)->get([$column])->pluck($column)->toArray();
-            if(count($options) > 1) {
-                $selection = $this->choice("Select a {$column}", $options);
-            } else {
-                $selection = $options[0];
+        $selection = $this->option($column) ?: null;
+
+        if (!$selection) {
+            try {
+                $options = DB::table('licenses')->where($where)->groupBy($column)->get([$column])->pluck($column)->toArray();
+                if(count($options) > 1) {
+                    $selection = $this->choice("Select a {$column}", $options);
+                } else {
+                    $selection = $options[0];
+                }
+            } catch (\OutOfBoundsException $e) {
+                throw new \Exception("Could not find a {$column}", 1, $e);
             }
-        } catch (\OutOfBoundsException $e) {
-            throw new \Exception("Could not find a {$column}", 1, $e);
         }
 
         $this->info("Selected: {$selection}");

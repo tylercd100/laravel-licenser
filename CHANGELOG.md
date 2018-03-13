@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-licenser` will be documented in this file.
 
+### 3.5.7
+- Added flags to command
+
 ### 3.5.6
 - Fixed console output errors
 
