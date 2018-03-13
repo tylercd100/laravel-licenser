@@ -14,7 +14,7 @@ class LicenseServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/pipe.php', 'pipe');
+        $this->mergeConfigFrom(__DIR__.'/../config/licenses.php', 'licenses');
     }
 
     /**
