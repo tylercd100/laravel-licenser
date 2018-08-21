@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-licenser` will be documented in this file.
 
+### 4.0.0
+- Deallocation logic
+
 ### 3.5.7
 - Added flags to command
 

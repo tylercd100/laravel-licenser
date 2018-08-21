@@ -80,27 +80,59 @@ abstract class License
      * @param boolean $add
      * @return void
      */
-    final public function allocate($quantity, $add = false)
+    public function allocate($quantity, $add = false)
     {
         $remaining = $this->remaining();
         if ($remaining < $quantity) {
             if(!$add) {
-                $this->error($remaining, $quantity);
+                $this->error($this->allocateMessage($remaining, $quantity));
             } else {
-                $this->add($quantity - $remaining);
+                $this->add($quantity);
             }
         }
 
-        $this->success($quantity);
+        $this->allocateSuccess($quantity);
     }
-    
+
     /**
-     * Called when there are enough licenses available
+     * Attempts to lower the quantity of licenses. The sub flag must be true.
+     *
+     * @param int $quantity
+     * @param boolean $sub
+     * @return void
+     */
+    public function deallocate($quantity, $sub = false)
+    {
+        $used = $this->used();
+        if ($used - $quantity >= 0) {
+            if(!$sub) {
+                $this->error($this->deallocateMessage($used, $quantity));
+            } else {
+                $this->sub($quantity);
+            }
+        }
+
+        $this->deallocateSuccess($quantity);
+    }
+
+    /**
+     * Called when there are enough licenses available to allocate
      *
      * @param int $quantity
      * @return void
      */
-    protected function success($quantity)
+    protected function allocateSuccess($quantity)
+    {
+        
+    }
+
+    /**
+     * Called when there are enough licenses available to deallocate
+     *
+     * @param int $quantity
+     * @return void
+     */
+    protected function deallocateSuccess($quantity)
     {
         
     }
@@ -112,9 +144,9 @@ abstract class License
      * @param int $quantity
      * @return void
      */
-    protected function error($remaining, $quantity)
+    protected function error($message)
     {
-        throw new LicenseException($this->message($remaining, $quantity));
+        throw new LicenseException($message);
     }
 
     /**
@@ -144,9 +176,21 @@ abstract class License
      * @param int $quantity Number of licenses trying to allocate.
      * @return string
      */
-    protected function message($remaining, $quantity)
+    protected function allocateMessage($remaining, $quantity)
     {
         return "There are not enough licenses available. Tried to allocate {$quantity} but there are only {$remaining} available.";
+    }
+
+    /**
+     * Returns the human readable error string when there are not enough licenses remaining to remove.
+     *
+     * @param int $remaining Number of licenses available.
+     * @param int $quantity Number of licenses trying to deallocate.
+     * @return string
+     */
+    protected function deallocateMessage($remaining, $quantity)
+    {
+        return "You cannot remove more licenses than you have available. Tried to deallocate {$quantity} but there are only {$remaining} remaining.";
     }
 
     /**

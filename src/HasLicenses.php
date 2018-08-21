@@ -22,6 +22,21 @@ trait HasLicenses
     }
 
     /**
+     * Attempt to Deallocate used licenses.
+     *
+     * @param string $class The License class you want to work with
+     * @param int $quantity The amount of licenses you want to attempt to use
+     * @param boolean $add If true then it will increase the maximum available licenses
+     * @return self
+     */
+    public function licensesDeallocate($class, $quantity, $sub = false)
+    {
+        $license = $this->getLicenseInstance($class);        
+        $license->deallocate($quantity, $sub);
+        return $this;
+    }
+
+    /**
      * Returns the amount of unused licenses.
      *
      * @param string $class The License class you want to work with
