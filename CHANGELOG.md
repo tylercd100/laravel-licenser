@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-licenser` will be documented in this file.
 
+### 4.0.1
+- Fixed deallocation issue
+
 ### 4.0.0
 - Deallocation logic
 

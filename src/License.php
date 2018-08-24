@@ -104,12 +104,8 @@ abstract class License
     public function deallocate($quantity, $sub = false)
     {
         $used = $this->used();
-        if ($used - $quantity >= 0) {
-            if(!$sub) {
-                $this->error($this->deallocateMessage($used, $quantity));
-            } else {
-                $this->sub($quantity);
-            }
+        if ($used - $quantity >= 0 && $sub) {
+            $this->sub($quantity);
         }
 
         $this->deallocateSuccess($quantity);
